@@ -1,0 +1,87 @@
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n;
+    cin>>n;
+    int mat[n][n];
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            cin>>mat[i][j];
+        }
+    }
+    cout<<"\noroiginal martix"<<endl;
+    for(int i=0;i<n;i++)
+{
+    for(int j=0;j<n;j++)
+    {
+        cout<<mat[i][j]<<" ";
+    }
+    cout<<endl;
+}
+
+    for(int i=0;i<n;i++)
+    {
+        for(int j=i;j<n;j++)
+        {
+          int temp = mat[i][j];
+          mat[i][j] = mat[j][i];
+          mat[j][i] = temp;
+        }
+    }
+    
+     cout<<"\ntranspose martix"<<endl;
+      for(int i=0;i<n;i++)
+{
+    for(int j=0;j<n;j++)
+    {
+        cout<<mat[i][j]<<" ";
+    }
+    cout<<endl;
+}
+     
+    for(int col=0;col<n;col++)
+    {
+        for(int i=0,j=n-1;abs(i-j)>1;i++,j--)
+        {
+            int temp = mat[i][col];
+            mat[i][col] = mat[j][col];
+            mat[j][col] = temp;
+        }
+    }
+    
+     cout<<"\nfinal martix"<<endl;
+for(int i=0;i<n;i++)
+{
+    for(int j=0;j<n;j++)
+    {
+        cout<<mat[i][j]<<" ";
+    }
+    cout<<endl;
+}
+    
+    /*oroiginal martix
+1 2 3 4 
+5 6 7 8 
+9 10 11 12 
+13 14 15 16 
+
+transpose martix
+1 5 9 13 
+2 6 10 14 
+3 7 11 15 
+4 8 12 16 
+
+final martix
+4 8 12 16 
+2 6 10 14 
+3 7 11 15 
+1 5 9 13 
+*/
+    return 0;
+}
