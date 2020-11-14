@@ -1,0 +1,128 @@
+/******************************************************************************
+
+                              Online C++ Compiler.
+               Code, Compile, Run and Debug C++ program online.
+Write your code in this editor and press "Run" button to compile and execute it.
+
+*******************************************************************************/
+
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int arr[35];
+    int start1= 0, start2 = 10, start3 =20; int end1= 9, end2= 19,end3=29;
+    int head1= 0, head2= 10,head3=20;
+    cout<<"Press\n 1.Push \n 2.Pop \n 0. to Quit"<<endl;
+    cout<<"enter your choice:  \n";
+    int val;
+    cin>>val;
+    
+    while(val!=0)
+    {
+        if(val==1)
+        {
+            int stack;
+            cout<<" choose the stack: "<<endl; cin>>stack;
+            cout<<" Enter value\n";
+            int x;
+            cin>>x;
+            if(stack==1)
+            {
+                if(head1<=end1)
+                {
+                    arr[head1] = x;
+                    head1++;
+                    for(int i=start1;i<=head1;i++)
+                    {
+                        cout<<arr[i]<<" ";
+                    }
+                    cout<<endl;
+                }
+                else
+                {
+                    cout<<"Stack 1 is full"<<endl;
+                }
+            }
+            else if(stack==2)
+            {
+                if(head2<=end2)
+                {
+                    arr[head2] = x;
+                    head2++;
+                     for(int i=start2;i<=head2;i++)
+                    {
+                        cout<<arr[i]<<" ";
+                    }
+                    cout<<endl;
+                }
+                else
+                {
+                    cout<<"Stack 2 is full"<<endl;
+                }
+            }
+            else 
+            {
+                if(head3<=end3)
+                {
+                    arr[head3] = x;
+                    head3++;
+                     for(int i=start3;i<=head3;i++)
+                    {
+                        cout<<arr[i]<<" ";
+                    }
+                    cout<<endl;
+                }
+                else
+                {
+                    cout<<"Stack 3 is full"<<endl;
+                }
+            }
+        }
+         if(val==2)
+        {
+            int stack;
+            cout<<" choose the stack: "<<endl; cin>>stack;
+            if(stack==1)
+            {
+                if(head1-1>=start1)
+                {
+                    cout<<" value is "<<arr[head1]<<endl;
+                    head1--;
+                }
+                else
+                {
+                    cout<<"Stack 1 is empty"<<endl;
+                }
+            }
+            else if(stack==2)
+            {
+                if(head2-1>=start2)
+                {
+                     cout<<" value is "<<arr[head2]<<endl;
+                    head2--;
+                }
+                else
+                {
+                    cout<<"Stack 2 is empty"<<endl;
+                }
+            }
+            else 
+            {
+                if(head3-1>=start3)
+                {
+                    cout<<" value is "<<arr[head3]<<endl;
+                    head3--;
+                }
+                else
+                {
+                    cout<<"Stack 3 is empty"<<endl;
+                }
+            }
+        }
+        cin>>val;
+    }
+    return 0;
+}
