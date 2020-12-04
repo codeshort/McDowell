@@ -1,0 +1,144 @@
+
+#include <iostream>
+#include<bits/stdc++.h>
+using namespace std;
+class Node
+{
+    public:
+    int timing;
+    string type;
+    Node *next;
+    
+};
+void print(Node* temp)
+{
+    while(temp!=NULL)
+    {
+        cout<<temp->type<<" "<<temp->timing<<endl;
+        temp=temp->next;
+    }
+}
+int main()
+{
+    int choice =0;
+    Node* head = new Node(); 
+    int cat =0;
+    int dog= 0;
+    while(choice==0)
+    {
+        cout<<"enter 1 for getting any"<<endl;
+        cout<<"enter 2 for getting cat"<<endl;
+        cout<<"enter 3 for getting dog"<<endl;
+        cout<<"Enter 4 for enquing "<<endl;
+        int sub_choice;
+        cin>>sub_choice;
+        if(sub_choice==1)
+        {
+            Node* temp= head;
+            if(head->next==NULL)
+            {
+                head=NULL;
+                
+            }
+            else
+            {
+                while(temp->next->next!=NULL)
+                {
+                  temp= temp->next; 
+                }
+                temp->next= NULL;
+            }
+            
+        }
+        else if(sub_choice==2)
+        {
+            int curr= 100;
+            Node* temp1= head;
+            Node* temp_last= head;
+            Node* temp= head;
+            while(temp->next!=NULL)
+            {
+             if(temp->next->type=="cat")
+             {
+                if(temp->next->timing<curr)
+                {
+                    temp1=temp->next;
+                    temp_last = temp;
+                    curr = temp->next->timing;
+                }
+             }
+             
+             temp= temp->next; 
+            }
+            temp_last->next = temp1->next;
+        }
+        else if(sub_choice==3)
+        {
+            int curr= 100;
+            Node* temp1= head;
+            Node* temp_last= head;
+            Node* temp= head;
+            while(temp->next!=NULL)
+            {
+             if(temp->next->type=="dog")
+             {
+                if(temp->next->timing<curr)
+                {
+                    temp1=temp->next;
+                    temp_last = temp;
+                    curr = temp->next->timing;
+                }
+             }
+             
+             temp= temp->next; 
+            }
+            temp_last->next = temp1->next;
+        }
+        else
+        {
+             Node* node = new Node();
+            cout<<"enter type "<<endl;
+              string type;
+              cin>>type;
+               node->type = type;
+           if(head==NULL)
+           {
+               if(type=="cat")
+               {
+                   node->timing= cat+1;
+                   cat++;
+               }
+               else
+               {
+                node->timing= dog+1;
+                   dog++;   
+               }
+               head=node;
+           }
+           else
+           {
+               Node* temp= head;
+               while(temp->next!=NULL)
+               {
+                  temp= temp->next; 
+               }
+               temp->next= node;
+               if(type=="dog")
+               {
+                   node->timing= cat+1;
+                   cat++;
+               }
+               else
+               {
+                node->timing= dog+1;
+                   dog++;   
+               }
+               cout<<"added "<<endl;
+               cout<<node->type<<" and "<<node->timing<<endl;
+           }
+        }
+        print(head);
+        cin>>choice;
+    }
+    return 0;
+}
