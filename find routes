@@ -1,0 +1,73 @@
+#include <iostream>
+#include <vector>
+#include <queue>
+using namespace std;
+class Graph{
+    int V; //no.of vertices 
+    vector<int> *adj;
+    public: 
+    Graph(int V){
+        this->V= V;
+        adj= new vector<int>[V];
+    }  // Constructor 
+    void addEdge(int v, int w)
+    {
+        adj[v].push_back(w);
+        
+    } // function to add an edge to graph 
+    bool isReachable(int s, int d)
+    {
+        queue<int> q;
+        bool arr[V];
+        for(int i=0;i<V;i++)
+        {
+            arr[i] = false;
+        }
+        q.push(s);
+        arr[s] = true;
+        while(!q.empty())
+        {
+           if(q.front()==d)
+           {
+               return true;
+           }
+           else 
+           {
+               for(auto it= adj[q.front()].begin();it!=adj[q.front()].end(); it++)
+               {
+                   if(arr[*it] == false)
+                   q.push(*it);
+               }
+           }
+           
+           arr[q.front()]= true;
+           q.pop();
+        }
+        
+        return false;
+    }
+};
+
+int main(){
+    // Create a graph given in the above diagram 
+    Graph g(4); 
+    g.addEdge(0, 1); 
+    g.addEdge(0, 2); 
+    g.addEdge(1, 2); 
+    g.addEdge(2, 0); 
+    g.addEdge(2, 3); 
+    g.addEdge(3, 3); 
+     int u = 1, v = 3; 
+    if(g.isReachable(u, v)) 
+        cout<< "\n There is a path from " << u << " to " << v; 
+    else
+        cout<< "\n There is no path from " << u << " to " << v; 
+  
+    u = 3, v = 1; 
+    if(g.isReachable(u, v)) 
+        cout<< "\n There is a path from " << u << " to " << v; 
+    else
+        cout<< "\n There is no path from " << u << " to " << v; 
+  
+    return 0; 
+}
