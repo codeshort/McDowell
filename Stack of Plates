@@ -1,0 +1,59 @@
+#include <iostream>
+#include <stack>
+using namespace std;
+int threshold = 4;
+class Setofstack{
+stack<int> st[10];
+int ind;
+public:
+Setofstack()
+{
+    ind =0;
+}
+void push(int val)
+{
+    if(ind>=10)
+    {
+        cout<<"its full\n";
+        return;
+    }
+    if(st[ind].size()<threshold)
+    {
+        st[ind].push(val);
+        cout<<"pushed "<<ind<<endl;
+    }
+    else
+    {
+        ind++;
+        st[ind].push(val);
+        cout<<"by increased pushed "<<ind<<endl;
+    }
+}
+void pop()
+{
+    
+    if(st[ind].size()==0)
+    {
+        ind--;
+        cout<<"for pop index subtracted "<<ind<<endl;
+    }
+    if(ind>=0 && ind<10)
+    {
+        cout<<"for pop index "<<ind<<endl;
+        st[ind].pop();
+    }
+    else
+    {
+        cout<<"Stack is empty\n";
+    }
+}
+
+};
+
+int main()
+{
+    Setofstack s;
+    s.push(10); s.push(20); s.push(24); s.push(12);s.push(15);s.push(68);s.push(87);s.push(17);
+    s.pop(); s.pop();s.pop(); s.pop();s.pop();
+    return 0;
+}
