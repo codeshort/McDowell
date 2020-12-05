@@ -1,0 +1,39 @@
+#include <iostream>
+using namespace std;
+class Node
+{
+    int val;
+    Node* left;
+    Node* right;
+    public:
+    Node* adding(int * arr, int start, int end)
+    {
+        if( start>end)
+        {
+            return NULL;
+        }
+        Node* root = new Node();
+        int mid = (start+end)/2;
+        cout<<" added "<<arr[mid]<<endl;
+        root->val = arr[mid];
+        if(mid-1>=start)
+        {
+            root->left= adding(arr,start,mid-1);
+        }
+       if(mid+1<=end)
+        {
+        
+            root->right= adding(arr,mid+1,end);
+        }
+        cout<<"******************************"<<endl;
+        return root;
+        
+    }
+};
+int main()
+{
+    Node n;
+    int arr[10] = {2, 4 , 8, 10, 14 ,17 ,18, 24, 27 , 30};
+    Node *root = n.adding(arr, 0,9);
+    return 0;
+}
