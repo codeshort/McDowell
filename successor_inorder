@@ -1,0 +1,110 @@
+#include <bits/stdc++.h> 
+using namespace std; 
+
+struct Node { 
+	int val; 
+	struct Node* left; 
+	struct Node* right; 
+	Node(int value) 
+	{ 
+		val = value; 
+		left = NULL; 
+		right = NULL; 
+	} 
+}; 
+
+
+
+void smallest(Node *fixed, Node *root)
+{
+    if(root->left==NULL && root->right== NULL)
+    {
+        cout<<"succ of "<<fixed->val<< " is "<<root->val<<endl;
+    }
+    else if(root->left==NULL)
+    {
+        cout<<"succ of "<<fixed->val<< " is "<<root->val<<endl;
+    }
+    else
+    {
+        smallest(fixed,root->left);
+    }
+}
+
+
+void byscratch(Node* fixed, Node* root,int ans)
+{
+    if(root==NULL)
+    {
+       cout<< "Its NULL "<<endl;
+    }
+    if(root->val>fixed->val)
+    {
+        
+        ans = root->val;
+        byscratch(fixed, root->left,ans);
+    }
+    else if(root->val<fixed->val)
+    {
+        byscratch(fixed, root->right,ans);
+    }
+    else
+    {
+        if(ans!=-1)
+        {
+            cout<<"succ "<<ans<<endl;
+        }
+        else
+        {
+            cout<<"Its the last"<<endl;
+        }
+    }
+}
+void inorder(Node *root, Node * fixed)
+{
+    if(root->right!=NULL)
+    {
+        smallest(root, root->right);
+    }
+    else if(root->right==NULL)
+    {
+        byscratch(root,fixed,-1);
+    }
+}
+void search(int val, Node * root, Node* fixed)
+{
+    
+    if(root==NULL)
+    {
+        cout<<"Not found"<<endl;
+        return;
+    }
+   if( val == root->val)
+   {
+       inorder(root,fixed);
+       return;
+   }
+   else if(val > root->val )
+   {
+       search(val,root->right,fixed);
+   }
+   else if(val < root->val)
+   {
+       search(val,root->left,fixed);
+   }
+}
+int main() 
+{ 
+
+	/*create root*/
+	struct Node* root = new Node(4); 
+    
+     
+	root->left = new Node(2); 
+	root->right = new Node(5); 
+	root->left->left = new Node(1); 
+	
+	search(5,root,root);
+	//search(2,root,root);
+	return 0; 
+} 
